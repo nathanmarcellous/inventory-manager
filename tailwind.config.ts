@@ -3,13 +3,12 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 import { withUt } from 'uploadthing/tw';
 
-const config = withUt({
+export default {
   darkMode: ['class'],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}', './features/**/*.{ts,tsx}'],
   prefix: '',
   theme: {
   	container: {
-  		center: 'true',
   		padding: '2rem',
   		screens: {
   			'2xl': '1400px'
@@ -94,6 +93,4 @@ const config = withUt({
   	}
   },
   plugins: [require('tailwindcss-animate')],
-}) satisfies Config;
-
-export default config;
+} satisfies Config;
