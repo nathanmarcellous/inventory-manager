@@ -64,7 +64,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className='flex flex-col h-full'>
       <ConfirmDialog />
-      <div className='flex items-center justify-between px-4 border-b py-2'>
+      <div className='flex items-center justify-between px-3 md:px-0 border-b py-2'>
         <Input
           placeholder={`Filter by ${filterKey}...`}
           value={(table.getColumn(filterKey)?.getFilterValue() as string) ?? ''}

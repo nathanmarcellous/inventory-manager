@@ -4,6 +4,7 @@ import { Inter as FontSans } from 'next/font/google';
 import { Toaster } from '@/components/ui/sonner';
 import { cn } from '@/lib/utils';
 
+import { Footer } from '@/components/footer';
 import { DrawerProvider } from '@/providers/drawer-provider';
 import './globals.css';
 
@@ -27,12 +28,11 @@ export default function RootLayout({
       lang='en'
       suppressHydrationWarning
     >
-      <head />
-      <body className={cn('min-h-screen bg-blue-100 font-sans antialiased', fontSans.variable)}>
-
+      <body className={cn('font-sans antialiased', fontSans.variable)}>
         <DrawerProvider />
         <Toaster />
-        <div className='mx-auto max-w-6xl md:py-4 h-full'>{children}</div>
+        {children}
+        <Footer />
       </body>
     </html>
   );

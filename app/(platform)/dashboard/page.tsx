@@ -9,8 +9,9 @@ import { getTotalRevenue } from '@/actions/get-total-revenue';
 import { Analytics } from '@/components/analytics';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 
-export default async function Home() {
+export default async function Dashboard() {
   const graphData = await getGraphRevenue();
 
   const totalRevenue = await getTotalRevenue();
@@ -19,15 +20,13 @@ export default async function Home() {
   const recentOrders = await getRecentOrders();
 
   return (
-    <Card className='flex-1 border-none rounded-none md:rounded-2xl shadow-md flex flex-col'>
-      <CardHeader className='p-3 px-6 bg-muted/80 rounded-none md:rounded-t-2xl flex flex-row justify-between items-center border-b'>
-        <div>
-          <CardTitle className='text-lg'>Dashboard</CardTitle>
-          <CardDescription className='text-xs'>Welcome to Inventory Manager!</CardDescription>
-        </div>
-      </CardHeader>
-      <CardContent className='p-0 flex-1'>
-        <div className='p-4'>
+    <>
+      <Header
+        title='Dashboard'
+        description='Welcome to Inventory Manager!'
+      />
+      <div className='p-3 md:px-6'>
+        <div className='mx-auto'>
           <div className='grid gap-4 md:grid-cols-3 mb-4'>
             <Card>
               <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
@@ -41,7 +40,7 @@ export default async function Home() {
             </Card>
             <Card>
               <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                <CardTitle className='text-sm font-medium'>Unique Products</CardTitle>
+                <CardTitle className='text-sm font-medium'>Active Products</CardTitle>
                 <ShoppingBag className='h-4 w-4 text-muted-foreground' />
               </CardHeader>
               <CardContent>
@@ -49,7 +48,6 @@ export default async function Home() {
                 <p className='text-xs text-muted-foreground'>Products marked as active</p>
               </CardContent>
             </Card>
-
             <Card>
               <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                 <CardTitle className='text-sm font-medium'>Completed Orders</CardTitle>
@@ -92,8 +90,7 @@ export default async function Home() {
             </Card>
           </div>
         </div>
-      </CardContent>
-      <Footer />
-    </Card>
+      </div>
+    </>
   );
 }

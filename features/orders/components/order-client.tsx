@@ -10,16 +10,28 @@ import { useNewOrder } from '@/features/orders/hooks/use-new-order';
 import { FlattenedOrder } from '@/features/orders/types';
 
 import { DataTable } from '@/components/data-table';
-import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 type Props = {
   orders: FlattenedOrder[];
 };
 
-export const OrderClient = ({ orders }: Props) => {
+export const OrderBtn = () => {
   const newOrder = useNewOrder();
+
+  return (
+    <Button
+      size='sm'
+      className='text-sm gap-1'
+      onClick={newOrder.onOpen}
+    >
+      <Plus className='size-4 mr-2' />
+      Add new
+    </Button>
+  );
+};
+
+export const OrderClient = ({ orders }: Props) => {
 
   const { execute, isPending } = useAction(bulkDeleteOrder, {
     onSuccess: ({ data }) => {
@@ -31,22 +43,7 @@ export const OrderClient = ({ orders }: Props) => {
   });
 
   return (
-    <Card className='flex-1 border-none rounded-none md:rounded-2xl shadow-md flex flex-col'>
-      <CardHeader className='p-3 px-6 bg-muted/80 rounded-none md:rounded-t-2xl flex flex-row justify-between items-center border-b'>
-        <div>
-          <CardTitle className='text-lg'>Orders</CardTitle>
-          <CardDescription className='text-xs'>Total Orders: {orders.length}</CardDescription>
-        </div>
-        <Button
-          size='sm'
-          className='text-sm gap-1'
-          onClick={newOrder.onOpen}
-        >
-          <Plus className='size-4 mr-2' />
-          Add new
-        </Button>
-      </CardHeader>
-      <CardContent className='p-0 flex-1'>
+
         <DataTable
           filterKey='customer'
           columns={columns}
@@ -57,8 +54,5 @@ export const OrderClient = ({ orders }: Props) => {
           }}
           disabled={isPending}
         />
-      </CardContent>
-      <Footer />
-    </Card>
   );
 };
