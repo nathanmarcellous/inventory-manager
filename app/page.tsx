@@ -22,7 +22,7 @@ export default function Home() {
             <h1 className='text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-6xl'>
               Inventory Manager
             </h1>
-            <p className='mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8'>
+            <p className='mt-8 text-pretty font-medium text-muted-foreground sm:text-lg'>
               Streamline your business operations by creating and managing products, customers, and orders, while also
               tracking your revenue and sales.
             </p>
