@@ -7,9 +7,10 @@ import { CustomerForm } from '@/features/customers/components/customer-form';
 import { useGetCustomer } from '@/features/customers/hooks/use-get-customer';
 import { useOpenCustomer } from '@/features/customers/hooks/use-open-customer';
 
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
-export const EditCustomerDrawer = () => {
+
+export const EditCustomerSheet = () => {
   const { isOpen, onClose, id } = useOpenCustomer();
 
   const { data, isLoading } = useGetCustomer(id);
@@ -25,15 +26,15 @@ export const EditCustomerDrawer = () => {
   });
 
   return (
-    <Drawer
+    <Sheet
       open={isOpen}
       onOpenChange={onClose}
     >
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Edit Customer</DrawerTitle>
-          <DrawerDescription>Edit an existing customer in your store.</DrawerDescription>
-        </DrawerHeader>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit Customer</SheetTitle>
+          <SheetDescription>Edit an existing customer in your store.</SheetDescription>
+        </SheetHeader>
         {isLoading ? (
           <div className='absolute inset-0 flex items-center justify-center'>
             <Loader2 className='size-4 text-muted-foreground animate-spin' />
@@ -46,7 +47,7 @@ export const EditCustomerDrawer = () => {
             initialData={data}
           />
         )}
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   );
 };

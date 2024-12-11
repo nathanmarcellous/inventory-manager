@@ -5,9 +5,9 @@ import { createCustomer } from '@/features/customers/actions/create-customer';
 import { CustomerForm } from '@/features/customers/components/customer-form';
 import { useNewCustomer } from '@/features/customers/hooks/use-new-customer';
 
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
-export const NewCustomerDrawer = () => {
+export const NewCustomerSheet = () => {
   const { isOpen, onClose } = useNewCustomer();
 
   const { execute, isPending } = useAction(createCustomer, {
@@ -21,20 +21,20 @@ export const NewCustomerDrawer = () => {
   });
 
   return (
-    <Drawer
+    <Sheet
       open={isOpen}
       onOpenChange={onClose}
     >
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>New Customer</DrawerTitle>
-          <DrawerDescription>Create a new customer to add to your store.</DrawerDescription>
-        </DrawerHeader>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>New Customer</SheetTitle>
+          <SheetDescription>Create a new customer to add to your store.</SheetDescription>
+        </SheetHeader>
         <CustomerForm
           onSubmit={execute}
           disabled={isPending}
         />
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   );
 };

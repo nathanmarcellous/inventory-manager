@@ -5,9 +5,9 @@ import { createProduct } from '@/features/products/actions/create-product';
 import { ProductForm } from '@/features/products/components/product-form';
 import { useNewProduct } from '@/features/products/hooks/use-new-product';
 
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
-export const NewProductDrawer = () => {
+export const NewProductSheet = () => {
   const { isOpen, onClose } = useNewProduct();
 
   const { execute, isPending } = useAction(createProduct, {
@@ -21,20 +21,20 @@ export const NewProductDrawer = () => {
   });
 
   return (
-    <Drawer
+    <Sheet
       open={isOpen}
       onOpenChange={onClose}
     >
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>New Product</DrawerTitle>
-          <DrawerDescription>Create a new product to add to your store.</DrawerDescription>
-        </DrawerHeader>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>New Product</SheetTitle>
+          <SheetDescription>Create a new product to add to your store.</SheetDescription>
+        </SheetHeader>
         <ProductForm
           onSubmit={execute}
           disabled={isPending}
         />
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   );
 };

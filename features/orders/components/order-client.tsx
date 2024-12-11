@@ -32,7 +32,6 @@ export const OrderBtn = () => {
 };
 
 export const OrderClient = ({ orders }: Props) => {
-
   const { execute, isPending } = useAction(bulkDeleteOrder, {
     onSuccess: ({ data }) => {
       toast.success(data?.message);
@@ -43,16 +42,15 @@ export const OrderClient = ({ orders }: Props) => {
   });
 
   return (
-
-        <DataTable
-          filterKey='customer'
-          columns={columns}
-          data={orders}
-          onDelete={row => {
-            const ids = row.map(r => r.original.id);
-            execute({ ids });
-          }}
-          disabled={isPending}
-        />
+    <DataTable
+      filterKey='customer'
+      columns={columns}
+      data={orders}
+      onDelete={row => {
+        const ids = row.map(r => r.original.id);
+        execute({ ids });
+      }}
+      disabled={isPending}
+    />
   );
 };

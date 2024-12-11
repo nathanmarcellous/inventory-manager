@@ -1,4 +1,3 @@
-
 import { Loader2 } from 'lucide-react';
 import { useAction } from 'next-safe-action/hooks';
 import { toast } from 'sonner';
@@ -8,9 +7,9 @@ import { ProductForm } from '@/features/products/components/product-form';
 import { useGetProduct } from '@/features/products/hooks/use-get-product';
 import { useOpenProduct } from '@/features/products/hooks/use-open-product';
 
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 
-export const EditProductDrawer = () => {
+export const EditProductSheet = () => {
   const { isOpen, onClose, id } = useOpenProduct();
 
   const { data, isLoading } = useGetProduct(id);
@@ -26,15 +25,15 @@ export const EditProductDrawer = () => {
   });
 
   return (
-    <Drawer
+    <Sheet
       open={isOpen}
       onOpenChange={onClose}
     >
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Edit Product</DrawerTitle>
-          <DrawerDescription>Edit an existing product in your store.</DrawerDescription>
-        </DrawerHeader>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit Product</SheetTitle>
+          <SheetDescription>Edit an existing product in your store.</SheetDescription>
+        </SheetHeader>
         {isLoading ? (
           <div className='absolute inset-0 flex items-center justify-center'>
             <Loader2 className='size-4 text-muted-foreground animate-spin' />
@@ -47,7 +46,7 @@ export const EditProductDrawer = () => {
             initialData={data}
           />
         )}
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   );
 };

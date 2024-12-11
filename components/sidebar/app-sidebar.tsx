@@ -1,6 +1,5 @@
 'use client';
 
-import { Home, Package, ShoppingBag, Users } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -9,9 +8,9 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
+  SidebarMenuItem
 } from '@/components/ui/sidebar';
+import { Home, Package, ShoppingBag, Users } from 'lucide-react';
 import Link from 'next/link';
 
 const items = [
@@ -38,12 +37,6 @@ const items = [
 ] as const;
 
 export const AppSidebar = () => {
-  const { toggleSidebar } = useSidebar();
-
-  const handleClick = () => {
-    toggleSidebar();
-  };
-
   return (
     <Sidebar>
       <SidebarContent>
@@ -54,10 +47,7 @@ export const AppSidebar = () => {
               {items.map(item => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Link
-                      href={item.href}
-                      onClick={handleClick}
-                    >
+                    <Link href={item.href}>
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>

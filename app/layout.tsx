@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { cn } from '@/lib/utils';
 
 import { Footer } from '@/components/footer';
-import { DrawerProvider } from '@/providers/drawer-provider';
+import { DrawerProvider } from '@/providers/sheet-provider';
 import './globals.css';
 
 const fontSans = FontSans({
@@ -32,7 +32,6 @@ export default function RootLayout({
         <DrawerProvider />
         <Toaster />
         {children}
-        <Footer />
       </body>
     </html>
   );

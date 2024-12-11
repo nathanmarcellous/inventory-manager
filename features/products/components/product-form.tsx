@@ -137,46 +137,44 @@ export const ProductForm: React.FC<Props> = ({ id, initialData, onSubmit, onDele
           )}
         />
 
-        <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
-          <FormField
-            control={form.control}
-            name='isActive'
-            render={({ field }) => (
-              <FormItem className='flex items-start space-x-3 space-y-0 rounded-md border p-4 w-full'>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    disabled={disabled}
-                  />
-                </FormControl>
-                <div className='space-y-1 leading-none'>
-                  <FormLabel>Is Active</FormLabel>
-                  <FormDescription>Setting this product as active will make it visible in the store.</FormDescription>
-                </div>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='isArchived'
-            render={({ field }) => (
-              <FormItem className='flex items-start space-x-3 space-y-0 rounded-md border p-4 w-full'>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    disabled={disabled}
-                  />
-                </FormControl>
-                <div className='space-y-1 leading-none'>
-                  <FormLabel>Is Archived</FormLabel>
-                  <FormDescription>Archive this product. It will no longer be visible in the store.</FormDescription>
-                </div>
-              </FormItem>
-            )}
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name='isActive'
+          render={({ field }) => (
+            <FormItem className='flex items-start space-x-3 space-y-0 rounded-md border p-4 w-full'>
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  disabled={disabled}
+                />
+              </FormControl>
+              <div className='space-y-1 leading-none'>
+                <FormLabel>Is Active</FormLabel>
+                <FormDescription>Setting this product as active will make it visible in the store.</FormDescription>
+              </div>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='isArchived'
+          render={({ field }) => (
+            <FormItem className='flex items-start space-x-3 space-y-0 rounded-md border p-4 w-full'>
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  disabled={disabled}
+                />
+              </FormControl>
+              <div className='space-y-1 leading-none'>
+                <FormLabel>Is Archived</FormLabel>
+                <FormDescription>Archive this product. It will no longer be visible in the store.</FormDescription>
+              </div>
+            </FormItem>
+          )}
+        />
         <Button
           className='w-full'
           disabled={disabled}

@@ -7,12 +7,12 @@ import { OrderForm } from '@/features/orders/components/order-form';
 import { useGetOrder } from '@/features/orders/hooks/use-get-order';
 import { useOpenOrder } from '@/features/orders/hooks/use-open-order';
 
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '@/components/ui/drawer';
-import { useGetInventory } from '../hooks/use-get-inventory';
 import { useGetCustomers } from '@/features/customers/hooks/use-get-customers';
 import { useGetProducts } from '@/features/products/hooks/use-get-products';
 
-export const EditOrderDrawer = () => {
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+
+export const EditOrderSheet = () => {
   const { isOpen, onClose, id } = useOpenOrder();
 
   const { data, isLoading } = useGetOrder(id);
@@ -30,15 +30,15 @@ export const EditOrderDrawer = () => {
   });
 
   return (
-    <Drawer
+    <Sheet
       open={isOpen}
       onOpenChange={onClose}
     >
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Edit Order</DrawerTitle>
-          <DrawerDescription>Edit an existing order in your store.</DrawerDescription>
-        </DrawerHeader>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Edit Order</SheetTitle>
+          <SheetDescription>Edit an existing order in your store.</SheetDescription>
+        </SheetHeader>
         {isLoading || isLoadingCustomers || isLoadingProducts ? (
           <div className='absolute inset-0 flex items-center justify-center'>
             <Loader2 className='size-4 text-muted-foreground animate-spin' />
@@ -53,7 +53,7 @@ export const EditOrderDrawer = () => {
             customers={customers || []}
           />
         )}
-      </DrawerContent>
-    </Drawer>
+      </SheetContent>
+    </Sheet>
   );
 };

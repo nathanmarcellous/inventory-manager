@@ -49,7 +49,7 @@ export const OrderForm: React.FC<Props> = ({ id, customers, products, initialDat
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className='p-4 space-y-4 h-full'
+        className='py-4 space-y-4 h-full'
       >
         <FormField
           control={form.control}
@@ -101,50 +101,47 @@ export const OrderForm: React.FC<Props> = ({ id, customers, products, initialDat
             </FormItem>
           )}
         />
-        <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
-          <FormField
-            control={form.control}
-            name='isPaid'
-            render={({ field }) => (
-              <FormItem className='flex items-start space-x-3 space-y-0 rounded-md border p-4 w-full'>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    disabled={disabled}
-                  />
-                </FormControl>
-                <div className='space-y-1 leading-none'>
-                  <FormLabel>Is Paid</FormLabel>
-                  <FormDescription>
-                    Settings this order as paid will add its amount to the total revenue.
-                  </FormDescription>
-                </div>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='isDelivered'
-            render={({ field }) => (
-              <FormItem className='flex items-start space-x-3 space-y-0 rounded-md border p-4 w-full'>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    disabled={disabled}
-                  />
-                </FormControl>
-                <div className='space-y-1 leading-none'>
-                  <FormLabel>Is Delivered</FormLabel>
-                  <FormDescription>
-                    Settings this order as delievered will remove it from the active order list.
-                  </FormDescription>
-                </div>
-              </FormItem>
-            )}
-          />
-        </div>
+
+        <FormField
+          control={form.control}
+          name='isPaid'
+          render={({ field }) => (
+            <FormItem className='flex items-start space-x-3 space-y-0 rounded-md border p-4 w-full'>
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  disabled={disabled}
+                />
+              </FormControl>
+              <div className='space-y-1 leading-none'>
+                <FormLabel>Is Paid</FormLabel>
+                <FormDescription>Settings this order as paid will add its amount to the total revenue.</FormDescription>
+              </div>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='isDelivered'
+          render={({ field }) => (
+            <FormItem className='flex items-start space-x-3 space-y-0 rounded-md border p-4 w-full'>
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  disabled={disabled}
+                />
+              </FormControl>
+              <div className='space-y-1 leading-none'>
+                <FormLabel>Is Delivered</FormLabel>
+                <FormDescription>
+                  Settings this order as delievered will remove it from the active order list.
+                </FormDescription>
+              </div>
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}
@@ -166,36 +163,38 @@ export const OrderForm: React.FC<Props> = ({ id, customers, products, initialDat
                     return (
                       <FormItem
                         key={product.id}
-                        className='flex flex-row items-start space-x-3 space-y-0 border p-2 rounded-md'
+                        className='flex flex-col items-start space-x-3 space-y-0 border p-2 rounded-md'
                       >
                         <FormControl>
-                          <div className='flex items-center justify-between p-2 w-full'>
-                            <div className='flex items-center gap-3'>
-                              <Checkbox
-                                checked={Boolean(existingProduct)}
-                                disabled={disabled || product.stock == 0}
-                                onCheckedChange={checked => {
-                                  return checked
-                                    ? field.onChange([
-                                        ...field.value,
-                                        { id: 'new', orderId: 'new', productId: product.id, quantity: 1 },
-                                      ])
-                                    : field.onChange(field.value?.filter(value => value.productId !== product.id));
-                                }}
-                              />
-                              <div>
-                                <p>{product.name}</p>
-                                <p className='text-xs text-muted-foreground'>${product.price}</p>
+                          <>
+                            <div className='flex items-center justify-between p-2 w-full'>
+                              <div className='flex items-center gap-3'>
+                                <Checkbox
+                                  checked={Boolean(existingProduct)}
+                                  disabled={disabled || product.stock == 0}
+                                  onCheckedChange={checked => {
+                                    return checked
+                                      ? field.onChange([
+                                          ...field.value,
+                                          { id: 'new', orderId: 'new', productId: product.id, quantity: 1 },
+                                        ])
+                                      : field.onChange(field.value?.filter(value => value.productId !== product.id));
+                                  }}
+                                />
+                                <div>
+                                  <p>{product.name}</p>
+                                  <p className='text-xs text-muted-foreground'>${product.price}</p>
+                                </div>
                               </div>
+                              <p className='text-xs text-muted-foreground'>Avaliable stock: {product.stock}</p>
                             </div>
 
-                            <div className='flex items-center gap-3'>
+                            <div className='flex items-center gap-3 w-full'>
                               {existingProduct && (
                                 <div className='flex items-center gap-2'>
                                   <Button
                                     variant='outline'
                                     className='h-8'
-                                    size='icon'
                                     type='button'
                                     disabled={disabled || product.stock == 0}
                                     onClick={() => {
@@ -221,7 +220,6 @@ export const OrderForm: React.FC<Props> = ({ id, customers, products, initialDat
                                   <Button
                                     variant='outline'
                                     className='h-8'
-                                    size='icon'
                                     type='button'
                                     disabled={disabled || product.stock == 0}
                                     onClick={() => {
@@ -245,9 +243,8 @@ export const OrderForm: React.FC<Props> = ({ id, customers, products, initialDat
                                   </Button>
                                 </div>
                               )}
-                              <p className='text-xs text-muted-foreground'>Avaliable stock: {product.stock}</p>
                             </div>
-                          </div>
+                          </>
                         </FormControl>
                       </FormItem>
                     );
@@ -257,6 +254,7 @@ export const OrderForm: React.FC<Props> = ({ id, customers, products, initialDat
             </FormItem>
           )}
         />
+
         <div className='pb-6'>
           <Button
             className='w-full'
@@ -275,7 +273,7 @@ export const OrderForm: React.FC<Props> = ({ id, customers, products, initialDat
               <Trash className='size-4 mr-2' />
               Delete Customer
             </Button>
-        )}
+          )}
         </div>
       </form>
     </Form>
