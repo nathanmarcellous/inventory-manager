@@ -26,12 +26,8 @@ export default function Home() {
               Streamline your business operations by creating and managing products, customers, and orders, while also
               tracking your revenue and sales.
             </p>
-            <div className='mt-10 flex items-center justify-center gap-x-6'>
-              <Button disabled>Sign up coming soon...</Button>
-              <Button
-                variant='ghost'
-                asChild
-              >
+            <div className='mt-10 flex items-center justify-center'>
+              <Button asChild>
                 <Link href='/dashboard'>
                   Check out the demo <span aria-hidden='true'>→</span>
                 </Link>

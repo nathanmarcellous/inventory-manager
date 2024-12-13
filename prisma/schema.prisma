@@ -20,24 +20,6 @@ enum ProductVariantSize {
   xl
 }
 
-model User {
-  id        String     @id @default(cuid())
-  sessions  Session[]
-  customers Customer[]
-  products  Product[]
-  orders    Order[]
-}
-
-model Session {
-  id        String   @id @default(cuid())
-  userId    String
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
 model Customer {
   id        String   @id @default(cuid())
   name      String
@@ -48,8 +30,6 @@ model Customer {
   updatedAt DateTime @updatedAt
 
   orders Order[]
-  userId String
-  user   User    @relation(fields: [userId], references: [id])
 }
 
 model Product {
@@ -64,8 +44,6 @@ model Product {
   updatedAt   DateTime @updatedAt
 
   OrderItem OrderItem[]
-  userId    String
-  user      User        @relation(fields: [userId], references: [id])
 }
 
 model Order {
@@ -78,8 +56,6 @@ model Order {
   updatedAt   DateTime @updatedAt
 
   OrderItem OrderItem[]
-  userId    String
-  user      User        @relation(fields: [userId], references: [id])
 }
 
 model OrderItem {
