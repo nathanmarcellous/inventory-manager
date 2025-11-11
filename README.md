@@ -1,6 +1,8 @@
 
 # Inventory Manager
 
+<img width="1852" height="868" alt="2025-11-11 11 18 54 inventory-manager-zeta-six vercel app 7c699435d379" src="https://github.com/user-attachments/assets/79305139-8c0f-4107-a06b-6d3fefd64912" />
+
 Inventory Manager is a demonstration application showcasing foundational concepts in content management systems (CMS), including relational data structures, database storage, authentication, and API integration. Designed as a test project, it serves as a practical example of implementing these principles rather than a tool for active store management.
 
 You can view my development process and what I learned while building on my blog [here](https://www.hanascript.com/).
